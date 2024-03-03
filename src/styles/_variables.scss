@@ -1,0 +1,35 @@
+:root {
+  --gutter: 1rem;
+
+  // breakpoints
+  --mobile-max-breakpoint: #{$mobile-max-breakpoint};
+  --tablet-min-breakpoint: #{$tablet-min-breakpoint};
+  --tablet-max-breakpoint: #{$tablet-max-breakpoint};
+  --desktop-min-breakpoint: #{$desktop-min-breakpoint};
+  --desktop-max-breakpoint: #{$desktop-max-breakpoint};
+  --desktop-lg-min-breakpoint: #{$desktop-lg-min-breakpoint};
+  --desktop-lg-max-breakpoint: #{$desktop-lg-max-breakpoint};
+
+  // colors
+  --primary: #4c96f7;
+  --white: #fff;
+  --black: #000;
+  --grey: #979797;
+  --dark-grey: #293339;
+  --light-grey: #ebebeb;
+  --light-white: #f2f2f2;
+
+  --success: #35d28b;
+  --orange: #fb9528;
+  --red: #e22c3e;
+  --dark-blue: #001489;
+
+  // Spacing
+  --spacing-xs: 8px;
+  --spacing-s: 12px;
+  --spacing-base: 16px;
+  --spacing-m: 24px;
+  --spacing-l: 32px;
+  --spacing-xl: 48px;
+  --spacing-2xl: 64px;
+}
