@@ -4,8 +4,8 @@ type Props = {
   children: React.ReactNode;
 };
 
-const Layout: React.FC<Props> = ({ children }) => {
+const FormWrapper: React.FC<Props> = ({ children }) => {
   return <div className={styles.container}>{children}</div>;
 };
 
-export default Layout;
+export default FormWrapper;
