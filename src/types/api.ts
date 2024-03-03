@@ -1,5 +1,5 @@
 export type QuestionData = {
   question: string;
-  answer: Array<string>;
+  answers: Array<string>;
   correct_answer: string;
 }[];
