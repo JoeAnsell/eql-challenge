@@ -13,7 +13,7 @@ const LoginPage: React.FC = (props) => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string>("");
-  const [cookies, setCookie] = useCookies(["name"]);
+  const [cookies, setCookie] = useCookies(["logged_in"]);
 
   //   const { login } = useAuth();
 
@@ -31,7 +31,7 @@ const LoginPage: React.FC = (props) => {
 
   const handleSubmit = () => {
     console.log("handleSubmit");
-    setCookie("logged_in", "true");
+    setCookie("logged_in", "false");
   };
 
   return (
