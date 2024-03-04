@@ -1,26 +1,24 @@
 import styles from "./QuizWrapper.module.scss";
 import type { QuestionData } from "@/types";
 import { Button } from "@mui/material";
+import { useRouter } from "next/router";
 
 type QuizWrapperProps = {
   questions: QuestionData;
   questionIndex: number;
-  answerCallBack: (value: boolean) => void;
+  quizFinished: boolean;
+  answerCallBack: (answer: string) => void;
 };
 
 const QuizWrapper: React.FC<QuizWrapperProps> = ({
   questions,
   questionIndex,
   answerCallBack,
+  quizFinished,
 }) => {
+  const router = useRouter();
   const handleAnswerClick = (answer: string) => {
-    if (questions[questionIndex].correct_answer === answer) {
-      console.log("correct answer");
-      answerCallBack(true);
-    } else {
-      console.log("wrong answer");
-      answerCallBack(false);
-    }
+    answerCallBack(answer);
   };
 
   return (
@@ -29,21 +27,38 @@ const QuizWrapper: React.FC<QuizWrapperProps> = ({
         {questions[questionIndex].question}
       </p>
       <div className={styles.buttonContainer}>
-        {questions[questionIndex].answers.map((answer, index) => {
-          return (
+        {quizFinished ? (
+          <>
+            <p>Quiz finished yo</p>
+            <br></br>
             <Button
               onClick={(e) => {
-                handleAnswerClick(e.currentTarget.value);
+                router.push("/summary");
               }}
-              key={index}
-              value={answer}
-              type="submit"
               variant="contained"
             >
-              {answer}
+              Continue to Summary
             </Button>
-          );
-        })}
+          </>
+        ) : (
+          <>
+            {questions[questionIndex].answers.map((answer, index) => {
+              return (
+                <Button
+                  onClick={(e) => {
+                    handleAnswerClick(e.currentTarget.value);
+                  }}
+                  key={index}
+                  value={answer}
+                  type="submit"
+                  variant="contained"
+                >
+                  {answer}
+                </Button>
+              );
+            })}
+          </>
+        )}
       </div>
     </div>
   );

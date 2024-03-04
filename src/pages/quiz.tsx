@@ -1,49 +1,68 @@
-import { Inter } from "next/font/google";
 import Layout from "@/components/Layout";
 import QuizWrapper from "@/components/QuizWrapper";
-import { useEffect, useState } from "react";
+import { useState, useContext, useEffect, useCallback } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
-import { useRouter } from "next/router";
-
-import type { QuestionData } from "@/types";
+import { QuestionsContext } from "./_app";
 
 const QuizPage: React.FC = () => {
-  const [questions, setQuestions] = useState<QuestionData>([]);
+  const questions = useContext(QuestionsContext);
   const [questionIndex, setQuestionIndex] = useState(0);
-  const router = useRouter();
+  const [isLastQuestion, setIsLastQuestion] = useState(false);
+  const [quizFinished, setQuizFinished] = useState(false);
+
+  const handleCallbackAnswer = useCallback(
+    (answer: string) => {
+      localStorage.setItem(`question_${questionIndex + 1}_answer`, `${answer}`);
+      if (isLastQuestion) {
+        setQuizFinished(true);
+        return;
+      }
+
+      setQuestionIndex(questionIndex + 1);
+      localStorage.setItem(`current_question_index`, `${questionIndex + 1}`);
+
+      if (questionIndex === questions.length - 2) {
+        setIsLastQuestion(true);
+      }
+    },
+    [questionIndex, isLastQuestion, questions.length]
+  );
 
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch("/api/questions");
-      const jsonData = await response.json();
-      setQuestions(jsonData);
-    };
-
-    fetchData();
-  }, []);
-
-  const handleCallbackAnswer = (value: boolean) => {
-    console.log("handleCallbackAnswer", value);
-    localStorage.setItem(`question_${questionIndex + 1}_answer`, `${value}`);
-    setQuestionIndex(questionIndex + 1);
-
-    if (questionIndex + 1 === questions.length) {
-      router.push("/summary");
+    if (questionIndex === questions.length - 1) {
+      setIsLastQuestion(true);
     }
-  };
+  }, [questionIndex, questions]);
+
+  useEffect(() => {
+    const currentQuestionIndex = localStorage.getItem(`current_question_index`);
+    if (questionIndex === questions.length - 1) {
+      setIsLastQuestion(true);
+    }
+
+    if (currentQuestionIndex === null) {
+      localStorage.setItem(`current_question_index`, "0");
+      return;
+    } else {
+      setQuestionIndex(Number(currentQuestionIndex));
+    }
+  }, []);
 
   return (
     <Layout>
       <h1>Quiz</h1>
       <br></br>
-      <p>{`Question ${questionIndex}`}</p>
-      <br></br>
       {questions.length > 0 ? (
-        <QuizWrapper
-          answerCallBack={handleCallbackAnswer}
-          questions={questions}
-          questionIndex={questionIndex}
-        />
+        <>
+          <p>{`Question ${questionIndex + 1}`}</p>
+          <br></br>
+          <QuizWrapper
+            answerCallBack={handleCallbackAnswer}
+            questions={questions}
+            questionIndex={questionIndex}
+            quizFinished={quizFinished}
+          />
+        </>
       ) : (
         <CircularProgress />
       )}
