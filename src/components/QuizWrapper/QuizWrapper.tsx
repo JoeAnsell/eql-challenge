@@ -2,6 +2,12 @@ import styles from "./QuizWrapper.module.scss";
 import type { QuestionData } from "@/types";
 import { Button } from "@mui/material";
 import { useRouter } from "next/router";
+import { useState } from "react";
+import FormControl from "@mui/material/FormControl";
+import Image from "next/image";
+import QuizFields from "./QuizFields";
+import clsx from "clsx";
+import { answerChecker } from "./AnswerChecker";
 
 type QuizWrapperProps = {
   questions: QuestionData;
@@ -16,48 +22,73 @@ const QuizWrapper: React.FC<QuizWrapperProps> = ({
   answerCallBack,
   quizFinished,
 }) => {
+  const { answers, question, image, correct_answer, question_type } =
+    questions[questionIndex];
   const router = useRouter();
-  const handleAnswerClick = (answer: string) => {
-    answerCallBack(answer);
+  const [correct, setCorrect] = useState<boolean | null>(null);
+
+  const handleSubmit = (values) => {
+    const answer = answerChecker(values, correct_answer, question_type);
+
+    setCorrect(answer);
+
+    setTimeout(() => {
+      answerCallBack(answer);
+      setCorrect(null);
+    }, 2000);
   };
 
   return (
     <div className={styles.quizWrapper}>
-      <p className={styles.quizWrapper__title}>
-        {questions[questionIndex].question}
-      </p>
-      <div className={styles.buttonContainer}>
+      {image && (
+        <div className={styles.quizWrapper__image}>
+          <Image
+            alt={image.alt}
+            src={image.filename}
+            fill={true}
+            style={{
+              objectFit: "contain",
+            }}
+          />
+        </div>
+      )}
+      <div className={styles.quizWrapper__question}>
+        {correct !== null ? (
+          <p className={styles.quizWrapper__title}>
+            {correct ? "CORRECT!" : "WRONG!"}
+          </p>
+        ) : (
+          <p className={styles.quizWrapper__title}>{question}</p>
+        )}
+      </div>
+      <div className={clsx(styles.buttonContainer)}>
         {quizFinished ? (
           <>
-            <p>Quiz finished yo</p>
-            <br></br>
-            <Button
-              onClick={(e) => {
-                router.push("/summary");
-              }}
-              variant="contained"
-            >
-              Continue to Summary
-            </Button>
+            <div>Quiz finished</div>
+            <div>
+              <Button
+                onClick={(e) => {
+                  router.push("/summary");
+                }}
+                variant="contained"
+              >
+                Continue to Summary
+              </Button>
+            </div>
           </>
         ) : (
-          <>
-            {questions[questionIndex].answers.map((answer, index) => {
-              return (
-                <Button
-                  onClick={(e) => {
-                    handleAnswerClick(e.currentTarget.value);
-                  }}
-                  key={index}
-                  value={answer}
-                  type="submit"
-                  variant="contained"
-                >
-                  {answer}
-                </Button>
-              );
-            })}
-          </>
+          <form>
+            <FormControl>
+              <QuizFields
+                answers={answers}
+                question_type={question_type}
+                question={question}
+                valuesCallBack={(values) => {
+                  handleSubmit(values);
+                }}
+              />
+            </FormControl>
+          </form>
         )}
       </div>
     </div>
