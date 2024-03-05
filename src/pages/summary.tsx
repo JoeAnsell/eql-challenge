@@ -6,14 +6,8 @@ import { Button } from "@mui/material";
 import { useRouter } from "next/router";
 import { QuestionData } from "@/types";
 
-type AnswerData = {
-  user_answer: string | null;
-  correct_answer: string | null;
-};
-
 export default function Summary() {
   const questions = useContext(QuestionsContext);
-  const [resultData, setResultData] = useState({});
   const [score, setScore] = useState<number | null>(null);
   const router = useRouter();
 
@@ -23,18 +17,12 @@ export default function Summary() {
       const checkCorrect = localStorage.getItem(
         `question_${index + 1}_correct`
       );
-      console.log("checkCorrect", checkCorrect);
       if (checkCorrect === "true") {
         results.push(checkCorrect);
       }
     });
-    console.log("results", results);
     setScore(results.length);
   }, [questions]);
-
-  useEffect(() => {
-    console.log("score", score);
-  }, [resultData]);
 
   return (
     <Layout>

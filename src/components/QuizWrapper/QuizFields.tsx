@@ -22,9 +22,9 @@ export default function QuizFields({
 }: QuizFieldsProps) {
   const [returnValue, setReturnValue] = useState<string[]>([]);
 
-  useEffect(() => {
-    console.log("returnValue", returnValue);
-  }, [returnValue]);
+  //   useEffect(() => {
+  //     console.log("returnValue", returnValue);
+  //   }, [returnValue]);
 
   useEffect(() => {
     setReturnValue([]);

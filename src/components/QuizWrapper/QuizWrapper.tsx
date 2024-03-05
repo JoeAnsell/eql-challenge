@@ -28,9 +28,9 @@ const QuizWrapper: React.FC<QuizWrapperProps> = ({
   const [correct, setCorrect] = useState<boolean | null>(null);
 
   const handleSubmit = (values: string | string[]) => {
-    console.log("values", values);
+    // console.log("values", values);
     const answer = answerChecker(values, correct_answer, question_type);
-    console.log("answer", answer);
+    // console.log("answer", answer);
     if (answer === undefined) return;
     setCorrect(answer);
 

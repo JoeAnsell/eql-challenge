@@ -49,7 +49,7 @@ const QuizPage: React.FC = () => {
     } else {
       setQuestionIndex(Number(currentQuestionIndex));
     }
-  }, []);
+  }, [questionIndex, questions.length]);
 
   return (
     <Layout>

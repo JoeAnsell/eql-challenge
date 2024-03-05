@@ -1,5 +1,3 @@
-// @import "sass-variables.scss";
-// @import "variables.scss";
 @import "reset.scss";
 @import "variables";
 
@@ -17,7 +15,21 @@ body {
 
 body {
   color: black;
-  background-color: white;
+  // background-color: white;
+  background-color: lightblue;
+  &:after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-image: url(/_next/static/media/dog-bg-smaller.766194a7.jpg);
+    background-repeat: repeat;
+    opacity: 0.1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
 }
 
 a {
