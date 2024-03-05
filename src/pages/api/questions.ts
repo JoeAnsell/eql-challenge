@@ -6,22 +6,22 @@ const questions = [
   {
     question: "Is this a dog?",
     answers: ["yes", "no", "maybe"],
-    correct_answer: ["yes", "no"],
-    image: {
-      filename: "/images/CatDog.jpg",
-      alt: "cat dog",
-    },
-    question_type: "multiple_choice",
-  },
-  {
-    question: "Is this a dog?",
-    answers: ["yes", "no", "maybe"],
     correct_answer: "yes",
     image: {
       filename: "/images/labrador.jpeg",
       alt: "labrador",
     },
     question_type: "single_choice",
+  },
+  {
+    question: "Is this a dog?",
+    answers: ["yes", "no", "maybe"],
+    correct_answer: ["yes", "no"],
+    image: {
+      filename: "/images/CatDog.jpg",
+      alt: "cat dog",
+    },
+    question_type: "multiple_choice",
   },
   {
     question: "Who is this dog?",

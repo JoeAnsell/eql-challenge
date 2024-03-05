@@ -1,4 +1,8 @@
-export const answerChecker = (answers, correct_answer, question_type) => {
+export function answerChecker(
+  answers: string | string[],
+  correct_answer: string | string[],
+  question_type: string
+) {
   if (question_type === "single_choice" || question_type === "text_input") {
     console.log("correct_answer", correct_answer);
     console.log("answers", answers);
@@ -8,12 +12,12 @@ export const answerChecker = (answers, correct_answer, question_type) => {
       return false;
     }
   }
-  if (question_type === "multiple_choice") {
+  if (question_type === "multiple_choice" && Array.isArray(correct_answer)) {
     let correct = true;
     if (answers.length > correct_answer.length) {
       correct = false;
     }
-    correct_answer.forEach((item: string) => {
+    correct_answer.map((item: string) => {
       if (answers.includes(item) && correct === true) {
         correct = true;
       } else {
@@ -22,4 +26,4 @@ export const answerChecker = (answers, correct_answer, question_type) => {
     });
     return correct;
   }
-};
+}

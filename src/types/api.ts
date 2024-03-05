@@ -1,10 +1,11 @@
-export type QuestionData = {
+export interface QuestionData {
   question: string;
-  answers: Array<string>;
+  answers: string | string[];
   correct_answer: string;
   question_type: string;
   image: {
     filename: string;
     alt: string;
   } | null;
-}[];
+}
+[];

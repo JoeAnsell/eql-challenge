@@ -40,43 +40,43 @@ const QuizWrapper: React.FC<QuizWrapperProps> = ({
 
   return (
     <div className={styles.quizWrapper}>
-      {image && (
-        <div className={styles.quizWrapper__image}>
-          <Image
-            alt={image.alt}
-            src={image.filename}
-            fill={true}
-            style={{
-              objectFit: "contain",
-            }}
-          />
-        </div>
-      )}
-      <div className={styles.quizWrapper__question}>
-        {correct !== null ? (
-          <p className={styles.quizWrapper__title}>
-            {correct ? "CORRECT!" : "WRONG!"}
-          </p>
-        ) : (
-          <p className={styles.quizWrapper__title}>{question}</p>
-        )}
-      </div>
-      <div className={clsx(styles.buttonContainer)}>
-        {quizFinished ? (
-          <>
-            <div>Quiz finished</div>
-            <div>
-              <Button
-                onClick={(e) => {
-                  router.push("/summary");
+      {quizFinished ? (
+        <>
+          <div>Quiz finished</div>
+          <div>
+            <Button
+              onClick={(e) => {
+                router.push("/summary");
+              }}
+              variant="contained"
+            >
+              Continue to Summary
+            </Button>
+          </div>
+        </>
+      ) : (
+        <>
+          {image && (
+            <div className={styles.quizWrapper__image}>
+              <Image
+                alt={image.alt}
+                src={image.filename}
+                fill={true}
+                style={{
+                  objectFit: "contain",
                 }}
-                variant="contained"
-              >
-                Continue to Summary
-              </Button>
+              />
             </div>
-          </>
-        ) : (
+          )}
+          <div className={styles.quizWrapper__question}>
+            {correct !== null ? (
+              <p className={styles.quizWrapper__title}>
+                {correct ? "CORRECT!" : "WRONG!"}
+              </p>
+            ) : (
+              <p className={styles.quizWrapper__title}>{question}</p>
+            )}
+          </div>
           <form>
             <FormControl>
               <QuizFields
@@ -89,8 +89,8 @@ const QuizWrapper: React.FC<QuizWrapperProps> = ({
               />
             </FormControl>
           </form>
-        )}
-      </div>
+        </>
+      )}
     </div>
   );
 };
