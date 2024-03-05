@@ -1,6 +1,7 @@
 .layout {
   max-width: 100vw;
   min-height: 100vh;
+  padding: $spacer;
   display: flex;
   flex-direction: column;
   align-items: center;

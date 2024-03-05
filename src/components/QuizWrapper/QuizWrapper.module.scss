@@ -1,7 +1,12 @@
+.question {
+  color: white;
+  padding-bottom: $spacer * 1;
+}
+
 .quizWrapper {
   border-radius: 10px;
   background-color: white;
-  padding: $spacer * 1 $spacer * 3;
+  padding: $spacer * 3;
   display: block;
   max-width: 600px;
   width: 100%;
@@ -9,15 +14,12 @@
   &__image {
     max-width: 400px;
     height: 400px;
-    width: 100%;
+    width: auto;
     position: relative;
     margin: 0 auto $spacer * 2 auto;
-  }
-
-  &__question {
-    padding-bottom: $spacer * 2;
-    p {
-      font-weight: bold;
+    img {
+      border-radius: 10px;
+      width: auto;
     }
   }
 }

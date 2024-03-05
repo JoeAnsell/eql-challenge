@@ -1,0 +1,46 @@
+// font-face declarations. Only woff and woff2 formats are needed by default
+@import url("https://fonts.googleapis.com/css2?family=Madimi+One&display=swap");
+
+$font-family: "Madimi One", Roboto, "Helvetica Neue", "Arial Nova",
+  "Nimbus Sans", Arial, sans-serif;
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-family;
+  color: white;
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+.u-h1 {
+  font-size: 60px;
+  line-height: 1.25;
+  font-weight: 400;
+  @media screen and (max-width: $tablet-max-breakpoint) {
+    font-size: 50px;
+  }
+
+  @media screen and (max-width: $mobile-max-breakpoint) {
+    font-size: 40px;
+  }
+}
+
+h2,
+.u-h2 {
+  font-size: 50px;
+  line-height: 1.15;
+  font-weight: 400;
+
+  @media screen and (max-width: $tablet-max-breakpoint) {
+    font-size: 40px;
+  }
+
+  @media screen and (max-width: $mobile-max-breakpoint) {
+    font-size: 30px;
+  }
+}

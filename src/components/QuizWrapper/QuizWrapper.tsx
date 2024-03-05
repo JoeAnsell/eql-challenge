@@ -43,59 +43,60 @@ const QuizWrapper: React.FC<QuizWrapperProps> = ({
   useEffect(() => {}, [question]);
 
   return (
-    <div className={styles.quizWrapper}>
-      {quizFinished ? (
-        <>
-          <div>Quiz finished</div>
-          <div>
-            <Button
-              onClick={(e) => {
-                router.push("/summary");
-              }}
-              variant="contained"
-            >
-              Continue to Summary
-            </Button>
-          </div>
-        </>
-      ) : (
-        <>
-          {image && (
-            <div className={styles.quizWrapper__image}>
-              <Image
-                alt={image.alt}
-                src={image.filename}
-                fill={true}
-                style={{
-                  objectFit: "contain",
+    <>
+      <h1 className={styles.question}>{question}</h1>
+      <div className={styles.quizWrapper}>
+        {quizFinished ? (
+          <>
+            <div>Quiz finished</div>
+            <div>
+              <Button
+                onClick={(e) => {
+                  router.push("/summary");
                 }}
-              />
+                variant="contained"
+              >
+                Continue to Summary
+              </Button>
             </div>
-          )}
-          <div className={styles.quizWrapper__question}>
-            {correct !== null ? (
-              <p className={styles.quizWrapper__title}>
-                {correct ? "CORRECT!" : "WRONG!"}
-              </p>
-            ) : (
-              <p className={styles.quizWrapper__title}>{question}</p>
+          </>
+        ) : (
+          <>
+            {image && (
+              <div className={styles.quizWrapper__image}>
+                <Image
+                  alt={image.alt}
+                  src={image.filename}
+                  fill={true}
+                  style={{
+                    objectFit: "contain",
+                  }}
+                />
+              </div>
             )}
-          </div>
-          <form>
-            <FormControl>
-              <QuizFields
-                answers={answers}
-                question_type={question_type}
-                question={question}
-                valuesCallBack={(values) => {
-                  handleSubmit(values);
-                }}
-              />
-            </FormControl>
-          </form>
-        </>
-      )}
-    </div>
+            <div className={styles.quizWrapper__question}>
+              {correct !== null && (
+                <p className={styles.quizWrapper__title}>
+                  {correct ? "CORRECT!" : "WRONG!"}
+                </p>
+              )}
+            </div>
+            <form>
+              <FormControl>
+                <QuizFields
+                  answers={answers}
+                  question_type={question_type}
+                  question={question}
+                  valuesCallBack={(values) => {
+                    handleSubmit(values);
+                  }}
+                />
+              </FormControl>
+            </form>
+          </>
+        )}
+      </div>
+    </>
   );
 };
 

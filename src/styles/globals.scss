@@ -1,5 +1,6 @@
 @import "reset.scss";
 @import "variables";
+@import "typography";
 
 * {
   box-sizing: border-box;
@@ -15,16 +16,15 @@ body {
 
 body {
   color: black;
-  // background-color: white;
-  background-color: lightblue;
+  background-color: #1279c3;
   &:after {
     content: "";
     display: block;
     width: 100%;
     height: 100%;
-    background-image: url(/_next/static/media/dog-bg-smaller.766194a7.jpg);
+    background-image: url("../../public/images/dog-bg-smaller.jpg");
     background-repeat: repeat;
-    opacity: 0.1;
+    opacity: 0.06;
     position: absolute;
     top: 0;
     left: 0;

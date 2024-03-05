@@ -3,6 +3,7 @@ import QuizWrapper from "@/components/QuizWrapper";
 import { useState, useContext, useEffect, useCallback } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 import { QuestionsContext } from "./_app";
+// import { styles } from "../styles/globals.scss";
 
 const QuizPage: React.FC = () => {
   const questions = useContext(QuestionsContext);
@@ -53,12 +54,8 @@ const QuizPage: React.FC = () => {
 
   return (
     <Layout>
-      <h1>Quiz</h1>
-      <br></br>
       {questions.length > 0 ? (
         <>
-          <p>{`Question ${questionIndex + 1}`}</p>
-          <br></br>
           <QuizWrapper
             answerCallBack={handleCallbackAnswer}
             questions={questions}
