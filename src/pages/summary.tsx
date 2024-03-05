@@ -17,19 +17,19 @@ export default function Summary() {
   const [score, setScore] = useState<number | null>(null);
   const router = useRouter();
 
-  // console.log(questions);
-
   useEffect(() => {
-    // let results = [];
-    // questions.map((question: QuestionData, index) => {
-    //   const userAnswer = localStorage.getItem(`question_${index + 1}_answer`);
-    //   const correctAnswer = question.correct_answer;
-    //   const returnData = {
-    //     user_answer: userAnswer,
-    //     correct_answer: correctAnswer,
-    //   };
-    //   results.push(returnData);
-    // });
+    let results = [] as string[];
+    questions.map((question: QuestionData, index) => {
+      const checkCorrect = localStorage.getItem(
+        `question_${index + 1}_correct`
+      );
+      console.log("checkCorrect", checkCorrect);
+      if (checkCorrect === "true") {
+        results.push(checkCorrect);
+      }
+    });
+    console.log("results", results);
+    setScore(results.length);
   }, [questions]);
 
   useEffect(() => {
@@ -40,7 +40,11 @@ export default function Summary() {
     <Layout>
       <h1>Summary</h1>
       <br></br>
-      {score !== null ? <p>{`You Scored: ${score}`}</p> : <CircularProgress />}
+      {score !== null ? (
+        <p>{`You Scored: ${score}/${questions.length}`}</p>
+      ) : (
+        <CircularProgress />
+      )}
       <br></br>
       <Button
         onClick={(e) => {

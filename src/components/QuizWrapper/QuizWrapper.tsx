@@ -2,7 +2,7 @@ import styles from "./QuizWrapper.module.scss";
 import { QuestionData } from "@/types";
 import { Button } from "@mui/material";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FormControl from "@mui/material/FormControl";
 import Image from "next/image";
 import QuizFields from "./QuizFields";
@@ -28,9 +28,10 @@ const QuizWrapper: React.FC<QuizWrapperProps> = ({
   const [correct, setCorrect] = useState<boolean | null>(null);
 
   const handleSubmit = (values: string | string[]) => {
+    console.log("values", values);
     const answer = answerChecker(values, correct_answer, question_type);
     console.log("answer", answer);
-    if (!answer) return;
+    if (answer === undefined) return;
     setCorrect(answer);
 
     setTimeout(() => {
@@ -38,6 +39,8 @@ const QuizWrapper: React.FC<QuizWrapperProps> = ({
       setCorrect(null);
     }, 2000);
   };
+
+  useEffect(() => {}, [question]);
 
   return (
     <div className={styles.quizWrapper}>

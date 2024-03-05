@@ -5,7 +5,7 @@ export function answerChecker(
 ) {
   if (question_type === "single_choice" || question_type === "text_input") {
     console.log("correct_answer", correct_answer);
-    console.log("answers", answers);
+    console.log("answers", answers[0]);
     if (answers[0] === correct_answer) {
       return true;
     } else {

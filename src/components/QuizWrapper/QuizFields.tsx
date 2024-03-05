@@ -23,8 +23,12 @@ export default function QuizFields({
   const [returnValue, setReturnValue] = useState<string[]>([]);
 
   useEffect(() => {
-    console.log(returnValue);
+    console.log("returnValue", returnValue);
   }, [returnValue]);
+
+  useEffect(() => {
+    setReturnValue([]);
+  }, [valuesCallBack]);
 
   const handleSubmit = () => {
     valuesCallBack(returnValue);
