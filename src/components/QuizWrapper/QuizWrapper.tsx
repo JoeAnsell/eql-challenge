@@ -29,7 +29,7 @@ const QuizWrapper: React.FC<QuizWrapperProps> = ({
 
   const handleSubmit = (values) => {
     const answer = answerChecker(values, correct_answer, question_type);
-
+    console.log("answer", answer);
     setCorrect(answer);
 
     setTimeout(() => {

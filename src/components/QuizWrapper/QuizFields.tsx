@@ -5,6 +5,7 @@ import RadioGroup from "@mui/material/RadioGroup";
 import Radio from "@mui/material/Radio";
 import Checkbox from "@mui/material/Checkbox";
 import FormGroup from "@mui/material/FormGroup";
+import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import { Button } from "@mui/material";
 
@@ -14,7 +15,7 @@ export default function QuizFields({
   question,
   valuesCallBack,
 }: QuestionData) {
-  const [returnValue, setReturnValue] = useState<string[]>([]);
+  const [returnValue, setReturnValue] = useState<string[] | string>([]);
 
   useEffect(() => {
     console.log(returnValue);
@@ -25,12 +26,34 @@ export default function QuizFields({
   };
 
   switch (question_type) {
+    case "text_input":
+      return (
+        <>
+          <TextField
+            fullWidth
+            id="answer"
+            label="answer"
+            variant="outlined"
+            margin="normal"
+            required
+            onChange={(e) => {
+              const formatValue = e.target.value
+                .replaceAll("-", " ")
+                .toLowerCase();
+              setReturnValue(formatValue);
+            }}
+          />
+          <Button onClick={handleSubmit} variant="contained">
+            Submit
+          </Button>
+        </>
+      );
     case "single_choice":
       const handleChangeRadio = (
         event: React.ChangeEvent<HTMLInputElement>
       ) => {
         const name = event.target.name;
-        console.log("name", name);
+        setReturnValue(name);
       };
       return (
         <>
@@ -44,7 +67,7 @@ export default function QuizFields({
                 <FormControlLabel
                   key={index}
                   value={answer}
-                  control={<Radio onChange={handleChangeRadio} />}
+                  control={<Radio name={answer} onChange={handleChangeRadio} />}
                   label={answer}
                 />
               );

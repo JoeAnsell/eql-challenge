@@ -24,11 +24,14 @@ const questions = [
     question_type: "single_choice",
   },
   {
-    question: "Click the dog?",
-    answers: ["yes", "no", "maybe"],
-    correct_answer: "maybe",
-    image: null,
-    question_type: "single_choice",
+    question: "Who is this dog?",
+    answers: null,
+    correct_answer: "snoop dogg",
+    image: {
+      filename: "/images/snoop-dogg.jpg",
+      alt: "Snoop dogg",
+    },
+    question_type: "text_input",
   },
 ];
 
