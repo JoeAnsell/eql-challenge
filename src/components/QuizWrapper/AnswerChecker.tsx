@@ -1,12 +1,12 @@
 export function answerChecker(
   answers: string | string[],
-  correct_answer: string | string[],
+  correct_answer: string | string[] | undefined,
   question_type: string
 ) {
   if (question_type === "single_choice" || question_type === "text_input") {
     console.log("correct_answer", correct_answer);
     console.log("answers", answers);
-    if (answers === correct_answer) {
+    if (answers[0] === correct_answer) {
       return true;
     } else {
       return false;

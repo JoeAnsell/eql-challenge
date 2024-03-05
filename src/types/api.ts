@@ -1,9 +1,9 @@
 export interface QuestionData {
   question: string;
-  answers: string | string[];
-  correct_answer: string;
+  answers: string[];
+  correct_answer?: string | undefined;
   question_type: string;
-  image: {
+  image?: {
     filename: string;
     alt: string;
   } | null;

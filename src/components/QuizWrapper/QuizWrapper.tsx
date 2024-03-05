@@ -1,5 +1,5 @@
 import styles from "./QuizWrapper.module.scss";
-import type { QuestionData } from "@/types";
+import { QuestionData } from "@/types";
 import { Button } from "@mui/material";
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -10,10 +10,10 @@ import clsx from "clsx";
 import { answerChecker } from "./AnswerChecker";
 
 type QuizWrapperProps = {
-  questions: QuestionData;
+  questions: QuestionData[];
   questionIndex: number;
   quizFinished: boolean;
-  answerCallBack: (answer: string) => void;
+  answerCallBack: (answer: boolean) => void;
 };
 
 const QuizWrapper: React.FC<QuizWrapperProps> = ({
@@ -27,9 +27,10 @@ const QuizWrapper: React.FC<QuizWrapperProps> = ({
   const router = useRouter();
   const [correct, setCorrect] = useState<boolean | null>(null);
 
-  const handleSubmit = (values) => {
+  const handleSubmit = (values: string | string[]) => {
     const answer = answerChecker(values, correct_answer, question_type);
     console.log("answer", answer);
+    if (!answer) return;
     setCorrect(answer);
 
     setTimeout(() => {

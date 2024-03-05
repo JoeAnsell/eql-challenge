@@ -4,6 +4,7 @@ import { QuestionsContext } from "./_app";
 import CircularProgress from "@mui/material/CircularProgress";
 import { Button } from "@mui/material";
 import { useRouter } from "next/router";
+import { QuestionData } from "@/types";
 
 type AnswerData = {
   user_answer: string | null;
@@ -19,26 +20,16 @@ export default function Summary() {
   // console.log(questions);
 
   useEffect(() => {
-    let results = [] as AnswerData[];
-    questions.map((question, index) => {
-      const userAnswer = localStorage.getItem(`question_${index + 1}_answer`);
-      const correctAnswer = question.correct_answer;
-
-      const returnData = {
-        user_answer: userAnswer,
-        correct_answer: correctAnswer,
-      };
-
-      results.push(returnData);
-    });
-
-    setResultData(results);
-    if (results.length > 0) {
-      const correctAnswers = results.filter(
-        (item) => item.user_answer === item.correct_answer
-      );
-      setScore(correctAnswers.length);
-    }
+    // let results = [];
+    // questions.map((question: QuestionData, index) => {
+    //   const userAnswer = localStorage.getItem(`question_${index + 1}_answer`);
+    //   const correctAnswer = question.correct_answer;
+    //   const returnData = {
+    //     user_answer: userAnswer,
+    //     correct_answer: correctAnswer,
+    //   };
+    //   results.push(returnData);
+    // });
   }, [questions]);
 
   useEffect(() => {

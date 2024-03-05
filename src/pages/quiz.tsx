@@ -11,8 +11,11 @@ const QuizPage: React.FC = () => {
   const [quizFinished, setQuizFinished] = useState(false);
 
   const handleCallbackAnswer = useCallback(
-    (answer: string) => {
-      localStorage.setItem(`question_${questionIndex + 1}_answer`, `${answer}`);
+    (answer: boolean) => {
+      localStorage.setItem(
+        `question_${questionIndex + 1}_correct`,
+        `${answer}`
+      );
       if (isLastQuestion) {
         setQuizFinished(true);
         return;

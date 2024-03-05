@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import type { QuestionData } from "@/types";
+import { QuestionData } from "@/types";
 import RadioGroup from "@mui/material/RadioGroup";
 import Radio from "@mui/material/Radio";
 import Checkbox from "@mui/material/Checkbox";
@@ -9,13 +9,18 @@ import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import { Button } from "@mui/material";
 
+interface QuizFieldsProps extends QuestionData {
+  valuesCallBack: (answer: string[]) => void;
+}
+[];
+
 export default function QuizFields({
   answers,
   question_type,
   question,
   valuesCallBack,
-}: QuestionData) {
-  const [returnValue, setReturnValue] = useState<string[] | string>([]);
+}: QuizFieldsProps) {
+  const [returnValue, setReturnValue] = useState<string[]>([]);
 
   useEffect(() => {
     console.log(returnValue);
@@ -40,7 +45,7 @@ export default function QuizFields({
               const formatValue = e.target.value
                 .replaceAll("-", " ")
                 .toLowerCase();
-              setReturnValue(formatValue);
+              setReturnValue([formatValue]);
             }}
           />
           <Button onClick={handleSubmit} variant="contained">
@@ -53,7 +58,7 @@ export default function QuizFields({
         event: React.ChangeEvent<HTMLInputElement>
       ) => {
         const name = event.target.name;
-        setReturnValue(name);
+        setReturnValue([name]);
       };
       return (
         <>
