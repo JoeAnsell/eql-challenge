@@ -1,4 +1,5 @@
 import styles from "./QuizWrapper.module.scss";
+import global from "../globalComponentStyles.module.scss";
 import { QuestionData } from "@/types";
 import { Button } from "@mui/material";
 import { useRouter } from "next/router";
@@ -45,7 +46,7 @@ const QuizWrapper: React.FC<QuizWrapperProps> = ({
   return (
     <>
       <h1 className={styles.question}>{question}</h1>
-      <div className={styles.quizWrapper}>
+      <div className={clsx(styles.quizWrapper, global.contentWrapper)}>
         {quizFinished ? (
           <>
             <div>Quiz finished</div>
