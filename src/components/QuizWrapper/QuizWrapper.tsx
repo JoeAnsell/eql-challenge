@@ -1,6 +1,6 @@
 import styles from "./QuizWrapper.module.scss";
 import global from "../globalComponentStyles.module.scss";
-import { QuestionData } from "@/types";
+import { QuestionData, imageProps } from "@/types";
 import { Button } from "@mui/material";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -23,7 +23,7 @@ const QuizWrapper: React.FC<QuizWrapperProps> = ({
   answerCallBack,
   quizFinished,
 }) => {
-  const { answers, question, image, correct_answer, question_type } =
+  const { answers, question, image, correct_answer, question_type, images } =
     questions[questionIndex];
   const router = useRouter();
   const [correct, setCorrect] = useState<boolean | null>(null);
@@ -40,7 +40,9 @@ const QuizWrapper: React.FC<QuizWrapperProps> = ({
     }, 2000);
   };
 
-  useEffect(() => {}, [question]);
+  useEffect(() => {
+    console.log("formValues", formValues);
+  }, [formValues]);
 
   return (
     <>
@@ -74,6 +76,28 @@ const QuizWrapper: React.FC<QuizWrapperProps> = ({
                 />
               </div>
             )}
+            {images && (
+              <div className={styles.quizWrapper__imageSelectContainer}>
+                {images.map((image: imageProps, index: number): any => {
+                  return (
+                    <button
+                      key={index}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setFormValues([`${index}`]);
+                      }}
+                    >
+                      <Image
+                        alt={image.alt}
+                        src={image.filename}
+                        fill={true}
+                        objectFit="cover"
+                      />
+                    </button>
+                  );
+                })}
+              </div>
+            )}
             <div className={styles.quizWrapper__controls}>
               {correct !== null ? (
                 <p data-correct={correct} className={styles.correct}>
@@ -84,13 +108,18 @@ const QuizWrapper: React.FC<QuizWrapperProps> = ({
                   className={styles.quizWrapper__form}
                   onSubmit={handleSubmit}
                 >
-                  <FormControl>
+                  <FormControl fullWidth>
                     <QuizFields
+                      images={images}
                       answers={answers}
                       question_type={question_type}
                       question={question}
+                      values={formValues}
                       valuesCallBack={(values) => {
-                        setFormValues(values);
+                        console.log("values", values);
+                        if (question_type !== "image_select") {
+                          setFormValues(values);
+                        }
                       }}
                     />
                   </FormControl>

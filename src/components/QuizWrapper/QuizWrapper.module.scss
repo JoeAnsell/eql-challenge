@@ -24,6 +24,19 @@
       max-height: 100%;
     }
   }
+  &__imageSelectContainer {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin-bottom: $spacer * 2;
+    gap: $spacer * 0.5;
+    button {
+      // max-width: 200px;
+      // width: 100vw;
+      height: 200px;
+      position: relative;
+    }
+  }
   &__controls {
     min-height: 150px;
     display: flex;
@@ -41,15 +54,24 @@
   }
   &__form {
     width: 100%;
-    max-width: 300px;
+
     .formGroup {
       label {
         &:last-of-type {
           margin-right: 2px;
         }
-        // span {
-        //   padding-right: 5px;
-        // }
+      }
+    }
+
+    .fields {
+      max-width: 300px;
+      margin: 0 auto;
+      width: 100%;
+      & > div {
+        justify-content: center;
+      }
+      button {
+        width: 100%;
       }
     }
   }

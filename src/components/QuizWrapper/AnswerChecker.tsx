@@ -3,7 +3,11 @@ export function answerChecker(
   correct_answer: string | string[] | undefined,
   question_type: string
 ) {
-  if (question_type === "single_choice" || question_type === "text_input") {
+  if (
+    question_type === "single_choice" ||
+    question_type === "text_input" ||
+    question_type === "image_select"
+  ) {
     if (answers[0] === correct_answer) {
       return true;
     } else {

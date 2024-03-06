@@ -1,6 +1,6 @@
 import Image from "next/image";
 import styles from "./QuizWrapper.module.scss";
-import { useEffect, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { QuestionData } from "@/types";
 import RadioGroup from "@mui/material/RadioGroup";
 import Radio from "@mui/material/Radio";
@@ -13,6 +13,7 @@ import clsx from "clsx";
 
 interface QuizFieldsProps extends QuestionData {
   valuesCallBack: (answer: string[]) => void;
+  values: string[] | [];
 }
 [];
 
@@ -20,10 +21,10 @@ export default function QuizFields({
   answers,
   question_type,
   question,
+  values,
   valuesCallBack,
 }: QuizFieldsProps) {
   const [returnValue, setReturnValue] = useState<string[]>([]);
-
   useEffect(() => {
     setReturnValue([]);
   }, [question]);
@@ -33,9 +34,28 @@ export default function QuizFields({
   }, [returnValue, valuesCallBack]);
 
   switch (question_type) {
-    case "text_input":
+    case "image_select":
       return (
         <>
+          <p className={styles.fieldNote}>Select an image</p>
+          <div className={styles.fields}>
+            <Button
+              className={clsx(
+                styles.submitButton,
+                returnValue.length <= 0 ||
+                  (values.length <= 0 && styles.disable)
+              )}
+              variant="contained"
+              type="submit"
+            >
+              Submit
+            </Button>
+          </div>
+        </>
+      );
+    case "text_input":
+      return (
+        <div className={styles.fields}>
           <p className={styles.fieldNote}>Type your answer</p>
           <TextField
             fullWidth
@@ -61,7 +81,7 @@ export default function QuizFields({
           >
             Submit
           </Button>
-        </>
+        </div>
       );
     case "single_choice":
       const handleChangeRadio = (
@@ -71,7 +91,7 @@ export default function QuizFields({
         setReturnValue([name]);
       };
       return (
-        <>
+        <div className={styles.fields}>
           <p className={styles.fieldNote}>Single choice:</p>
           <RadioGroup
             row
@@ -100,7 +120,7 @@ export default function QuizFields({
           >
             Submit
           </Button>
-        </>
+        </div>
       );
     case "multiple_choice":
       const handleChangeCheckBox = (
@@ -116,7 +136,7 @@ export default function QuizFields({
         }
       };
       return (
-        <>
+        <div className={styles.fields}>
           <p className={styles.fieldNote}>{`Multiple choice (if you want):`}</p>
           <FormGroup
             id="quiz-fields"
@@ -147,7 +167,7 @@ export default function QuizFields({
           >
             Submit
           </Button>
-        </>
+        </div>
       );
 
     default:

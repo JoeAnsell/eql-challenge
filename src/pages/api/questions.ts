@@ -4,6 +4,18 @@ import type { QuestionData } from "@/types";
 
 const questions = [
   {
+    question: "Select the dog",
+    answers: null,
+    correct_answer: "1",
+    images: [
+      { filename: "/images/labrador.jpeg", alt: "labrador" },
+      { filename: "/images/labrador.jpeg", alt: "labrador" },
+      { filename: "/images/labrador.jpeg", alt: "labrador" },
+      { filename: "/images/labrador.jpeg", alt: "labrador" },
+    ],
+    question_type: "image_select",
+  },
+  {
     question: "Is this a dog?",
     answers: ["yes", "no", "maybe"],
     correct_answer: "yes",
@@ -11,6 +23,7 @@ const questions = [
       filename: "/images/labrador.jpeg",
       alt: "labrador",
     },
+    images: null,
     question_type: "single_choice",
   },
   {
@@ -21,6 +34,7 @@ const questions = [
       filename: "/images/CatDog.jpg",
       alt: "cat dog",
     },
+    images: null,
     question_type: "multiple_choice",
   },
   {
@@ -31,6 +45,7 @@ const questions = [
       filename: "/images/snoop-dogg.jpg",
       alt: "Snoop dogg",
     },
+    images: null,
     question_type: "text_input",
   },
   {
@@ -41,6 +56,7 @@ const questions = [
       filename: "/images/loads-of-dogs.jpeg",
       alt: "gang of dogs",
     },
+    images: null,
     question_type: "single_choice",
   },
   {
