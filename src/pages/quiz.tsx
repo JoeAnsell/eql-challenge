@@ -55,14 +55,12 @@ const QuizPage: React.FC = () => {
   return (
     <Layout>
       {questions.length > 0 ? (
-        <>
-          <QuizWrapper
-            answerCallBack={handleCallbackAnswer}
-            questions={questions}
-            questionIndex={questionIndex}
-            quizFinished={quizFinished}
-          />
-        </>
+        <QuizWrapper
+          answerCallBack={handleCallbackAnswer}
+          questions={questions}
+          questionIndex={questionIndex}
+          quizFinished={quizFinished}
+        />
       ) : (
         <CircularProgress />
       )}

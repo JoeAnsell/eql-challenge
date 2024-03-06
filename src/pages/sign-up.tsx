@@ -16,10 +16,8 @@ const LoginPage: React.FC = () => {
   const router = useRouter();
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    console.log("handleSubmit");
-    console.log("firstName", firstName);
-    console.log("lastName", lastName);
-    console.log("email", email);
+    localStorage.setItem(`user_first_name`, `${firstName}`);
+    localStorage.setItem(`user_last_name`, `${lastName}`);
 
     setCookie("logged_in", "true");
     router.push("/quiz");
@@ -66,7 +64,7 @@ const LoginPage: React.FC = () => {
               }}
             />
             <Button type="submit" variant="contained">
-              Submit
+              Show Me Dogs!
             </Button>
           </FormControl>
         </form>

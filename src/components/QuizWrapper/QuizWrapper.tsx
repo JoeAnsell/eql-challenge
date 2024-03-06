@@ -45,22 +45,24 @@ const QuizWrapper: React.FC<QuizWrapperProps> = ({
 
   return (
     <>
-      <h1 className={styles.question}>{question}</h1>
-      <div className={clsx(styles.quizWrapper, global.contentWrapper)}>
+      <h1 className={styles.question}>
+        {quizFinished ? "Quiz Finished" : question}
+      </h1>
+      <div
+        className={clsx(
+          styles.quizWrapper,
+          quizFinished ? global.standAloneButton : global.contentWrapper
+        )}
+      >
         {quizFinished ? (
-          <>
-            <div>Quiz finished</div>
-            <div>
-              <Button
-                onClick={(e) => {
-                  router.push("/summary");
-                }}
-                variant="contained"
-              >
-                Continue to Summary
-              </Button>
-            </div>
-          </>
+          <Button
+            onClick={(e) => {
+              router.push("/summary");
+            }}
+            variant="contained"
+          >
+            Continue to Summary
+          </Button>
         ) : (
           <>
             {image && (
@@ -75,25 +77,26 @@ const QuizWrapper: React.FC<QuizWrapperProps> = ({
                 />
               </div>
             )}
-            <div className={styles.quizWrapper__question}>
-              {correct !== null && (
-                <p className={styles.quizWrapper__title}>
+            <div className={styles.quizWrapper__controls}>
+              {correct !== null ? (
+                <p data-correct={correct} className={styles.correct}>
                   {correct ? "CORRECT!" : "WRONG!"}
                 </p>
+              ) : (
+                <form className={styles.quizWrapper__form}>
+                  <FormControl>
+                    <QuizFields
+                      answers={answers}
+                      question_type={question_type}
+                      question={question}
+                      valuesCallBack={(values) => {
+                        handleSubmit(values);
+                      }}
+                    />
+                  </FormControl>
+                </form>
               )}
             </div>
-            <form>
-              <FormControl>
-                <QuizFields
-                  answers={answers}
-                  question_type={question_type}
-                  question={question}
-                  valuesCallBack={(values) => {
-                    handleSubmit(values);
-                  }}
-                />
-              </FormControl>
-            </form>
           </>
         )}
       </div>

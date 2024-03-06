@@ -1,4 +1,5 @@
 import Image from "next/image";
+import styles from "./QuizWrapper.module.scss";
 import { useEffect, useState } from "react";
 import { QuestionData } from "@/types";
 import RadioGroup from "@mui/material/RadioGroup";
@@ -22,10 +23,6 @@ export default function QuizFields({
 }: QuizFieldsProps) {
   const [returnValue, setReturnValue] = useState<string[]>([]);
 
-  //   useEffect(() => {
-  //     console.log("returnValue", returnValue);
-  //   }, [returnValue]);
-
   useEffect(() => {
     setReturnValue([]);
   }, [valuesCallBack]);
@@ -33,6 +30,9 @@ export default function QuizFields({
   const handleSubmit = () => {
     valuesCallBack(returnValue);
   };
+
+  // useEffect(() =.})
+  // returnValue
 
   switch (question_type) {
     case "text_input":
@@ -52,7 +52,12 @@ export default function QuizFields({
               setReturnValue([formatValue]);
             }}
           />
-          <Button onClick={handleSubmit} variant="contained">
+          <Button
+            className={styles.submitButton}
+            onClick={handleSubmit}
+            variant="contained"
+            type="submit"
+          >
             Submit
           </Button>
         </>
@@ -70,6 +75,7 @@ export default function QuizFields({
             row
             aria-labelledby={`${question} radio buttons`}
             name={question}
+            className={styles.formGroup}
           >
             {answers.map((answer, index) => {
               return (
@@ -82,7 +88,12 @@ export default function QuizFields({
               );
             })}
           </RadioGroup>
-          <Button onClick={handleSubmit} variant="contained">
+          <Button
+            className={styles.submitButton}
+            onClick={handleSubmit}
+            variant="contained"
+            type="submit"
+          >
             Submit
           </Button>
         </>
@@ -106,6 +117,7 @@ export default function QuizFields({
             id="quiz-fields"
             row
             aria-labelledby={`${question} Check Boxes`}
+            className={styles.formGroup}
           >
             {answers.map((answer, index) => {
               return (
@@ -120,7 +132,12 @@ export default function QuizFields({
               );
             })}
           </FormGroup>
-          <Button onClick={handleSubmit} variant="contained">
+          <Button
+            className={styles.submitButton}
+            onClick={handleSubmit}
+            variant="contained"
+            type="submit"
+          >
             Submit
           </Button>
         </>

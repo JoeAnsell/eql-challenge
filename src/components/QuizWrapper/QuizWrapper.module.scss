@@ -15,6 +15,47 @@
       width: auto;
     }
   }
+  &__controls {
+    min-height: 130px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .correct {
+      font-size: 40px;
+      &[data-correct="true"] {
+        color: green;
+      }
+      &[data-correct="false"] {
+        color: red;
+      }
+    }
+  }
+  &__form {
+    width: 100%;
+    max-width: 300px;
+    .formGroup {
+      label {
+        &:last-of-type {
+          margin-right: 0;
+        }
+      }
+    }
+    // div {
+    //   align-items: center;
+    // }
+    // button {
+    //   width: 100%;
+    // }
+    // & > div {
+    //   width: 100%;
+    //   & > div {
+    //   }
+    // }
+  }
+}
+
+.submitButton {
+  margin-top: $spacer * 0.5;
 }
 
 .buttonContainer {

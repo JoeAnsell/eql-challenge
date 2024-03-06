@@ -2,8 +2,6 @@ import "@/styles/globals.scss";
 import type { AppProps } from "next/app";
 import { useEffect, useState, createContext } from "react";
 
-import { QuestionData } from "@/types";
-
 export const QuestionsContext = createContext([]);
 
 export default function App({ Component, pageProps }: AppProps) {

@@ -33,6 +33,26 @@ const questions = [
     },
     question_type: "text_input",
   },
+  {
+    question: "Is this a lot of dogs?",
+    answers: ["yes", "no", "could be more"],
+    correct_answer: "could be more",
+    image: {
+      filename: "/images/loads-of-dogs.jpeg",
+      alt: "gang of dogs",
+    },
+    question_type: "single_choice",
+  },
+  {
+    question: "Finish this sentence, what's up...",
+    answers: null,
+    correct_answer: "dog",
+    image: {
+      filename: "/images/upsidedowndog.jpeg",
+      alt: "upside down dog",
+    },
+    question_type: "text_input",
+  },
 ];
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
