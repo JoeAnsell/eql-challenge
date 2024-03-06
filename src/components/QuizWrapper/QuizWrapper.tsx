@@ -27,10 +27,11 @@ const QuizWrapper: React.FC<QuizWrapperProps> = ({
     questions[questionIndex];
   const router = useRouter();
   const [correct, setCorrect] = useState<boolean | null>(null);
+  const [formValues, setFormValues] = useState<string | string[]>([]);
 
-  const handleSubmit = (values: string | string[]) => {
+  const handleSubmit = () => {
     // console.log("values", values);
-    const answer = answerChecker(values, correct_answer, question_type);
+    const answer = answerChecker(formValues, correct_answer, question_type);
     // console.log("answer", answer);
     if (answer === undefined) return;
     setCorrect(answer);
@@ -83,14 +84,17 @@ const QuizWrapper: React.FC<QuizWrapperProps> = ({
                   {correct ? "CORRECT!" : "WRONG!"}
                 </p>
               ) : (
-                <form className={styles.quizWrapper__form}>
+                <form
+                  className={styles.quizWrapper__form}
+                  onSubmit={handleSubmit}
+                >
                   <FormControl>
                     <QuizFields
                       answers={answers}
                       question_type={question_type}
                       question={question}
                       valuesCallBack={(values) => {
-                        handleSubmit(values);
+                        setFormValues(values);
                       }}
                     />
                   </FormControl>

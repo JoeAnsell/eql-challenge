@@ -25,14 +25,15 @@ export default function QuizFields({
 
   useEffect(() => {
     setReturnValue([]);
-  }, [valuesCallBack]);
+  }, [question]);
 
-  const handleSubmit = () => {
+  // const handleSubmit = () => {
+  //   valuesCallBack(returnValue);
+  // };
+
+  useEffect(() => {
     valuesCallBack(returnValue);
-  };
-
-  // useEffect(() =.})
-  // returnValue
+  }, [returnValue, valuesCallBack]);
 
   switch (question_type) {
     case "text_input":
@@ -54,7 +55,7 @@ export default function QuizFields({
           />
           <Button
             className={styles.submitButton}
-            onClick={handleSubmit}
+            // onClick={handleSubmit}
             variant="contained"
             type="submit"
           >
@@ -90,7 +91,7 @@ export default function QuizFields({
           </RadioGroup>
           <Button
             className={styles.submitButton}
-            onClick={handleSubmit}
+            // onClick={handleSubmit}
             variant="contained"
             type="submit"
           >
@@ -134,7 +135,7 @@ export default function QuizFields({
           </FormGroup>
           <Button
             className={styles.submitButton}
-            onClick={handleSubmit}
+            // onClick={handleSubmit}
             variant="contained"
             type="submit"
           >
