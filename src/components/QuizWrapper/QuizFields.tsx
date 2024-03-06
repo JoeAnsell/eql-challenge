@@ -28,10 +28,6 @@ export default function QuizFields({
     setReturnValue([]);
   }, [question]);
 
-  // const handleSubmit = () => {
-  //   valuesCallBack(returnValue);
-  // };
-
   useEffect(() => {
     valuesCallBack(returnValue);
   }, [returnValue, valuesCallBack]);
@@ -40,6 +36,7 @@ export default function QuizFields({
     case "text_input":
       return (
         <>
+          <p className={styles.fieldNote}>Type your answer</p>
           <TextField
             fullWidth
             id="answer"
@@ -75,6 +72,7 @@ export default function QuizFields({
       };
       return (
         <>
+          <p className={styles.fieldNote}>Single choice:</p>
           <RadioGroup
             row
             aria-labelledby={`${question} radio buttons`}
@@ -119,6 +117,7 @@ export default function QuizFields({
       };
       return (
         <>
+          <p className={styles.fieldNote}>{`Multiple choice (if you want):`}</p>
           <FormGroup
             id="quiz-fields"
             row

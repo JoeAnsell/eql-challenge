@@ -3,6 +3,10 @@
   padding-bottom: $spacer * 1;
 }
 
+.fieldNote {
+  margin-bottom: $spacer * 0.5;
+}
+
 .quizWrapper {
   &__image {
     height: 400px;
@@ -21,7 +25,7 @@
     }
   }
   &__controls {
-    min-height: 130px;
+    min-height: 150px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -41,9 +45,18 @@
     .formGroup {
       label {
         &:last-of-type {
-          margin-right: 0;
+          margin-right: 2px;
         }
+        // span {
+        //   padding-right: 5px;
+        // }
       }
+    }
+  }
+
+  @media screen and (max-width: $mobile-max-breakpoint) {
+    &__image {
+      height: 300px;
     }
   }
 }
