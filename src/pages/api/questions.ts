@@ -44,6 +44,16 @@ const questions = [
     question_type: "single_choice",
   },
   {
+    question: "Is this a dog?",
+    answers: ["inky dog", "no", "urhm, yeh?", "shouldn't be"],
+    correct_answer: ["inky dog", "shouldn't be"],
+    image: {
+      filename: "/images/dog-tatoo.jpeg",
+      alt: "Dog tattoo",
+    },
+    question_type: "multiple_choice",
+  },
+  {
     question: "Finish this sentence, what's up...",
     answers: null,
     correct_answer: "dog",

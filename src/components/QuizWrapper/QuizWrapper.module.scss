@@ -41,15 +41,12 @@
   }
   &__form {
     width: 100%;
-    max-width: 300px;
+    max-width: 450px;
     .formGroup {
       label {
         &:last-of-type {
           margin-right: 2px;
         }
-        // span {
-        //   padding-right: 5px;
-        // }
       }
     }
   }
@@ -62,7 +59,8 @@
 }
 
 .submitButton {
-  margin-top: $spacer * 0.5;
+  width: 200px;
+  margin: 0.5rem auto 0 auto;
 }
 
 .disable {

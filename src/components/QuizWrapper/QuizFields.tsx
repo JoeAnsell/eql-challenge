@@ -84,7 +84,13 @@ export default function QuizFields({
                 <FormControlLabel
                   key={index}
                   value={answer}
-                  control={<Radio name={answer} onChange={handleChangeRadio} />}
+                  control={
+                    <Radio
+                      style={{ paddingRight: "4px" }}
+                      name={answer}
+                      onChange={handleChangeRadio}
+                    />
+                  }
                   label={answer}
                 />
               );
@@ -117,7 +123,7 @@ export default function QuizFields({
       };
       return (
         <>
-          <p className={styles.fieldNote}>{`Multiple choice (if you want):`}</p>
+          <p className={styles.fieldNote}>{`Multiple choice:`}</p>
           <FormGroup
             id="quiz-fields"
             row
@@ -130,7 +136,11 @@ export default function QuizFields({
                   key={index}
                   value={answer}
                   control={
-                    <Checkbox name={answer} onChange={handleChangeCheckBox} />
+                    <Checkbox
+                      style={{ paddingRight: "4px" }}
+                      name={answer}
+                      onChange={handleChangeCheckBox}
+                    />
                   }
                   label={answer}
                 />
