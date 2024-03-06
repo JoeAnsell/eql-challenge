@@ -9,6 +9,7 @@ import FormGroup from "@mui/material/FormGroup";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import { Button } from "@mui/material";
+import clsx from "clsx";
 
 interface QuizFieldsProps extends QuestionData {
   valuesCallBack: (answer: string[]) => void;
@@ -54,8 +55,10 @@ export default function QuizFields({
             }}
           />
           <Button
-            className={styles.submitButton}
-            // onClick={handleSubmit}
+            className={clsx(
+              styles.submitButton,
+              returnValue.length <= 0 && styles.disable
+            )}
             variant="contained"
             type="submit"
           >
@@ -90,8 +93,10 @@ export default function QuizFields({
             })}
           </RadioGroup>
           <Button
-            className={styles.submitButton}
-            // onClick={handleSubmit}
+            className={clsx(
+              styles.submitButton,
+              returnValue.length <= 0 && styles.disable
+            )}
             variant="contained"
             type="submit"
           >
@@ -134,8 +139,10 @@ export default function QuizFields({
             })}
           </FormGroup>
           <Button
-            className={styles.submitButton}
-            // onClick={handleSubmit}
+            className={clsx(
+              styles.submitButton,
+              returnValue.length <= 0 && styles.disable
+            )}
             variant="contained"
             type="submit"
           >

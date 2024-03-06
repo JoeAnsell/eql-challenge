@@ -30,9 +30,7 @@ const QuizWrapper: React.FC<QuizWrapperProps> = ({
   const [formValues, setFormValues] = useState<string | string[]>([]);
 
   const handleSubmit = () => {
-    // console.log("values", values);
     const answer = answerChecker(formValues, correct_answer, question_type);
-    // console.log("answer", answer);
     if (answer === undefined) return;
     setCorrect(answer);
 
@@ -71,10 +69,8 @@ const QuizWrapper: React.FC<QuizWrapperProps> = ({
                 <Image
                   alt={image.alt}
                   src={image.filename}
-                  fill={true}
-                  style={{
-                    objectFit: "contain",
-                  }}
+                  width={600}
+                  height={400}
                 />
               </div>
             )}

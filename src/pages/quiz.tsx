@@ -19,6 +19,7 @@ const QuizPage: React.FC = () => {
       );
       if (isLastQuestion) {
         setQuizFinished(true);
+        localStorage.setItem(`current_question_index`, `${questionIndex + 1}`);
         return;
       }
 
